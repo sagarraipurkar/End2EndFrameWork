@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import multiUseElementAbstract.MultiUseComponent;
 
@@ -15,6 +16,7 @@ public class Checkout extends MultiUseComponent {
 	public Checkout(WebDriver driver) {
 		super(driver);
 		this.driver = driver;
+		PageFactory.initElements(driver, this);
 	}
 
 	@FindBy(css = "div[class='field'] [class='input txt text-validated']")

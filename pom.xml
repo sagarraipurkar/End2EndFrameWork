@@ -46,7 +46,11 @@
 			<artifactId>selenium-java</artifactId>
 			<version>4.25.0</version>
 		</dependency>
-
+		<dependency>
+			<groupId>com.github.lemfi.kest</groupId>
+			<artifactId>junit5</artifactId>
+			<version>0.6.8</version>
+		</dependency>
 		<dependency>
 			<groupId>org.testng</groupId>
 			<artifactId>testng</artifactId>

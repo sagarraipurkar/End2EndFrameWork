@@ -9,6 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -17,6 +18,7 @@ import login.pagefactory.Login;
 public class BaseTest {
 
 	public static WebDriver driver;
+	public static Login Login;
 
 	public static WebDriver Initilizaton() throws Exception {
 
@@ -45,9 +47,10 @@ public class BaseTest {
 		return driver;
 	}
 
+	@BeforeMethod
 	public static Login LaunchApplication() throws Exception {
 		driver = Initilizaton();
-		Login Login = new Login(driver);
+		Login = new Login(driver);
 		Login.ApplicationUrl();
 		return Login;
 	}

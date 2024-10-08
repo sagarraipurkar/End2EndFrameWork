@@ -3,6 +3,7 @@ package SagarAcademy;
 import java.time.Duration;
 import java.util.List;
 
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,13 +18,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import login.pagefactory.Cart;
 import login.pagefactory.Checkout;
 import login.pagefactory.ConfimrationPage;
-import login.pagefactory.Login;
 import login.pagefactory.ProductCatalogs;
 import multiUseElementAbstract.MultiUseComponent;
 
 public class loginToCheckout extends BaseTest {
 
-	public static void main(String[] args) throws Exception {
+	@Test
+	public void submitOrder() throws Exception {
 		// TODO Auto-generated method stub
 		String UserEmail = "John@mailinator.com";
 		String Password = "Sagar@91";
@@ -37,10 +38,6 @@ public class loginToCheckout extends BaseTest {
 		Boolean match = Cart.verifyProductNameinCart(productname);
 		Assert.assertTrue(match);
 		Checkout Checkout = Cart.ClickOnCheckout();
-
-		Checkout.cardNumber("4111111111111111");
-		Checkout.EnterCvv("123");
-		Checkout.EnterCardName("john");
 		Checkout.EnterEmail(UserEmail);
 		Checkout.ClickonDropdown();
 		Checkout.EnterCountryDropdown("Ind");
