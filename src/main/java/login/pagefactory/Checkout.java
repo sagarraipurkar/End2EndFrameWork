@@ -39,7 +39,7 @@ public class Checkout extends MultiUseComponent {
 	@FindBy(xpath = "/html/body/app-root/app-order/section/div/div/div[2]/div/div/div[3]/div[2]/div[2]/div/div[1]/div/section/button")
 	List<WebElement> CountryListIn;
 
-	@FindBy(xpath = "(//a[normalize-space()='Place Order'])[1]")
+	@FindBy(css = ".btnn.action__submit.ng-star-inserted")
 	WebElement Placeorder;
 
 	public void cardNumber(String number) {

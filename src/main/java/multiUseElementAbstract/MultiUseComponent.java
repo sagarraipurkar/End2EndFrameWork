@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import login.pagefactory.Cart;
 import login.pagefactory.Checkout;
+import login.pagefactory.MyOrderPage;
 
 public class MultiUseComponent {
 
@@ -25,6 +26,9 @@ public class MultiUseComponent {
 
 	@FindBy(css = "[routerlink*='cart']")
 	WebElement clickAddToCart;
+	
+	@FindBy(css = "[routerlink*='myorder']")
+	WebElement ClickOnMyOrder;
 
 	@FindBy(css = "[class='subtotal cf ng-star-inserted'] button")
 	WebElement ClickOnCheckButton;
@@ -48,6 +52,12 @@ public class MultiUseComponent {
 		clickAddToCart.click();
 		Cart Cart = new Cart(driver);
 		return Cart;
+	}
+	
+	public MyOrderPage ClickonmyOrder() {
+		ClickOnMyOrder.click();
+		MyOrderPage order = new MyOrderPage(driver);
+		return order;
 	}
 
 	public Checkout ClickOnCheckout() {
