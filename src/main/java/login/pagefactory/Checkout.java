@@ -39,7 +39,7 @@ public class Checkout extends MultiUseComponent {
 	@FindBy(xpath = "/html/body/app-root/app-order/section/div/div/div[2]/div/div/div[3]/div[2]/div[2]/div/div[1]/div/section/button")
 	List<WebElement> CountryListIn;
 
-	@FindBy(css = ".btnn.action__submit.ng-star-inserted")
+	@FindBy(xpath = "//a[normalize-space()='Place Order']")
 	WebElement Placeorder;
 
 	public void cardNumber(String number) {
@@ -72,13 +72,14 @@ public class Checkout extends MultiUseComponent {
 		EnterCountryName.sendKeys(CountryName);
 	}
 
-	public List<WebElement> getCountryList() {
+	public List<WebElement> getCountryList() throws InterruptedException {
+		Thread.sleep(5000);
 		return CountryListIn;
 
 	}
 
 	public ConfimrationPage PlaceOrder() throws Exception {
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		Placeorder.click();
 		ConfimrationPage ConfimrationPage = new ConfimrationPage(driver);
 		return ConfimrationPage;

@@ -1,6 +1,7 @@
 package SagarAcademy;
 
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import basecomponent.BaseTest;
 import login.pagefactory.Login;
@@ -8,7 +9,8 @@ import login.pagefactory.ProductCatalogs;
 
 public class errorMessage extends BaseTest {
 
-	public static void main(String[] args) throws Exception {
+	@Test
+	public void validationErrorMessage() throws Exception {
 
 //		Login Login = LaunchApplication();
 		ProductCatalogs ProductCatalogs = Login.LoginApplication("Sagar@mail.com", "Sagar@91");

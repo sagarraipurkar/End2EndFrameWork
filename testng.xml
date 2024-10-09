@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite name="Suite">
+<suite parallel="tests" name="Suite">
 
-  <test thread-count="5" name="SubmitOrder">
-    <classes>
-      <class name="SagarAcademy.loginToCheckout"/>
-    </classes>
-      </test>
-      
-     <test thread-count="5" name="ErrorMessage">
-    <classes>
-      <class name="SagarAcademy.errorMessage"/>
-    </classes>
-  </test> 
-  <!-- Test -->
-</suite> <!-- Suite -->
+	<test thread-count="5" name="SubmitOrder">
+		<classes>
+			<class name="SagarAcademy.loginToCheckout" />
+		</classes>
+	</test>
+
+	<test thread-count="5" name="errorMessage">
+		<classes>
+			<class name="SagarAcademy.validationErrorMessage" />
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
