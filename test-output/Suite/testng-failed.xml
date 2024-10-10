@@ -2,12 +2,14 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite parallel="tests" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" parallel="tests" name="SubmitOrder(failed)">
+    <parameter name="UserName" value="John@mailinator.com"/>
+    <parameter name="productname" value="ADIDAS ORIGINAL"/>
+    <parameter name="Password" value="Sagar@91"/>
     <classes>
       <class name="SagarAcademy.loginToCheckout">
         <methods>
-          <include name="submitOrder"/>
+          <include name="submitOrder" invocation-numbers="0"/>
           <include name="teardown"/>
-          <include name="Myorder"/>
           <include name="LaunchApplication"/>
         </methods>
       </class> <!-- SagarAcademy.loginToCheckout -->

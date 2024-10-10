@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.asserts.Assertion;
 
 import basecomponent.BaseTest;
@@ -24,22 +25,21 @@ import login.pagefactory.ProductCatalogs;
 import multiUseElementAbstract.MultiUseComponent;
 
 public class loginToCheckout extends BaseTest {
-	String UserEmail = "John@mailinator.com";
-	String Password = "Sagar@91";
-	String productname = "ADIDAS ORIGINAL";
+//	String productname = "ADIDAS ORIGINAL";
 
+	@Parameters({ "UserName", "Password", "productname" })
 	@org.testng.annotations.Test
-	public void submitOrder() throws Exception {
+	public void submitOrder(String Username, String Password, String product) throws Exception {
 		// TODO Auto-generated method stub
-		ProductCatalogs ProductCatalogs = Login.LoginApplication(UserEmail, Password);
+		ProductCatalogs ProductCatalogs = Login.LoginApplication(Username, Password);
 		List<WebElement> products = ProductCatalogs.getProductList();
-		ProductCatalogs.addTocart(productname);
+		ProductCatalogs.addTocart(product);
 		Cart Cart = ProductCatalogs.clickOnCart();
-		Cart.verifyProductNameinCart(productname);
-		Boolean match = Cart.verifyProductNameinCart(productname);
+		Cart.verifyProductNameinCart(product);
+		Boolean match = Cart.verifyProductNameinCart(product);
 		Assert.assertTrue(match);
 		Checkout Checkout = Cart.ClickOnCheckout();
-		Checkout.EnterEmail(UserEmail);
+		Checkout.EnterEmail(Username);
 		Checkout.ClickonDropdown();
 		Checkout.EnterCountryDropdown("Ind");
 		List<WebElement> CountryList = Checkout.getCountryList();
@@ -56,11 +56,12 @@ public class loginToCheckout extends BaseTest {
 
 	}
 
+	@Parameters({ "UserName", "Password", "product"  })
 	@org.testng.annotations.Test(dependsOnMethods = { "submitOrder" })
-	public void Myorder() {
-		ProductCatalogs ProductCatalogs = Login.LoginApplication(UserEmail, Password);
+	public void Myorder(String Username, String Password, String product) {
+		ProductCatalogs ProductCatalogs = Login.LoginApplication(Username, Password);
 		MyOrderPage productOrder = ProductCatalogs.ClickonmyOrder();
-		Assert.assertTrue(productOrder.verifyOrderProduct(productname));
+		Assert.assertTrue(productOrder.verifyOrderProduct(product));
 
 	}
 }

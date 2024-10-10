@@ -3,16 +3,12 @@
 <suite parallel="tests" name="Suite">
 
 	<test thread-count="5" name="SubmitOrder">
+		<parameter name="UserName" value="John@mailinator.com"></parameter>
+		<parameter name="Password" value="Sagar@91"></parameter>
+		<parameter name="productname" value="ADIDAS ORIGINAL"></parameter>
 		<classes>
 			<class name="SagarAcademy.loginToCheckout" />
 		</classes>
 	</test>
-
-	<test thread-count="5" name="errorMessage">
-		<classes>
-			<class name="SagarAcademy.validationErrorMessage" />
-		</classes>
-	</test> <!--
-	Test -->
 </suite> <!--
 Suite -->

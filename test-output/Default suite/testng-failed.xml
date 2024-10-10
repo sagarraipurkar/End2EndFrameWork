@@ -3,14 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="SagarAcademy.loginToCheckout">
+      <class name="SagarAcademy.errorMessage">
         <methods>
-          <include name="submitOrder"/>
+          <include name="validationErrorMessage"/>
           <include name="teardown"/>
-          <include name="Myorder"/>
           <include name="LaunchApplication"/>
         </methods>
-      </class> <!-- SagarAcademy.loginToCheckout -->
+      </class> <!-- SagarAcademy.errorMessage -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
