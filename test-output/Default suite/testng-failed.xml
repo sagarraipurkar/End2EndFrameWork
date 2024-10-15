@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="SagarAcademy.errorMessage">
+      <class name="SagarAcademy.loginToCheckout_hashmap2_json">
         <methods>
-          <include name="validationErrorMessage"/>
           <include name="teardown"/>
           <include name="LaunchApplication"/>
+          <include name="submitOrder"/>
         </methods>
-      </class> <!-- SagarAcademy.errorMessage -->
+      </class> <!-- SagarAcademy.loginToCheckout_hashmap2_json -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

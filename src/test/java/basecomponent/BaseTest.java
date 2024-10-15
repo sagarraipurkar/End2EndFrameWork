@@ -1,17 +1,29 @@
 package basecomponent;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.Duration;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
+
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.pagefactory.Login;
@@ -49,7 +61,7 @@ public class BaseTest {
 	}
 
 	@BeforeMethod
-	public static Login LaunchApplication() throws Exception {
+	public Login LaunchApplication() throws Exception {
 		driver = Initilizaton();
 		Login = new Login(driver);
 		Login.ApplicationUrl();
@@ -57,7 +69,25 @@ public class BaseTest {
 	}
 
 	@AfterMethod
-	public static void teardown() {
+	public void teardown() {
 		driver.close();
+	}
+
+	public void getScreenshot(String methodname) throws IOException {
+		TakesScreenshot screenshot = (TakesScreenshot) driver;
+		File source = screenshot.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(source, new File("C:\\Eclipse New\\Screenshot\\screenshot4.png"));
+	}
+
+	public List<HashMap<String, String>> getdata_Reader(String filePath) throws IOException {
+		String jsoncontent = FileUtils.readFileToString(
+				new File(filePath),
+				StandardCharsets.UTF_8);
+
+		ObjectMapper mapper = new ObjectMapper();
+		List<HashMap<String, String>> data = mapper.readValue(jsoncontent,
+				new TypeReference<List<HashMap<String, String>>>() {
+				});
+		return data;
 	}
 }

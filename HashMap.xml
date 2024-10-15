@@ -6,7 +6,7 @@
 	<test thread-count="5" name="SubmitOrder">
 		
 		<classes>
-			<class name="SagarAcademy.loginToCheckout" />
+			<class name="SagarAcademy.loginToCheckout_hashmap" />
 		</classes>
 	</test>
 </suite> <!--

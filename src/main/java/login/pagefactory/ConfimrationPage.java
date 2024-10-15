@@ -21,5 +21,7 @@ public class ConfimrationPage extends MultiUseComponent  {
 	
 	public String GetConfirmationMessage() {
 	return confirmMessage.getText();
+
+	
 	}
 }

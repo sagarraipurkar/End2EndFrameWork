@@ -26,7 +26,7 @@ public class MultiUseComponent {
 
 	@FindBy(css = "[routerlink*='cart']")
 	WebElement clickAddToCart;
-	
+
 	@FindBy(css = "[routerlink*='myorder']")
 	WebElement ClickOnMyOrder;
 
@@ -37,7 +37,7 @@ public class MultiUseComponent {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOfElementLocated(Findby));
 	}
-	
+
 	public void visibilityofWebElement(WebElement Findby) {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(Findby));
@@ -53,7 +53,7 @@ public class MultiUseComponent {
 		Cart Cart = new Cart(driver);
 		return Cart;
 	}
-	
+
 	public MyOrderPage ClickonmyOrder() {
 		ClickOnMyOrder.click();
 		MyOrderPage order = new MyOrderPage(driver);

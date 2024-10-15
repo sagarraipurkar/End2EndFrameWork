@@ -1,6 +1,8 @@
 package SagarAcademy;
 
+import java.io.IOException;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.hc.core5.util.Asserts;
@@ -19,6 +21,7 @@ import org.testng.annotations.Parameters;
 import org.testng.asserts.Assertion;
 
 import basecomponent.BaseTest;
+import data_json.getData_json;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import login.pagefactory.Cart;
 import login.pagefactory.Checkout;
@@ -28,22 +31,20 @@ import login.pagefactory.MyOrderPage;
 import login.pagefactory.ProductCatalogs;
 import multiUseElementAbstract.MultiUseComponent;
 
-public class loginToCheckout extends BaseTest {
-//	String productname = "ADIDAS ORIGINAL";
+public class loginToCheckout_hashmap2_json extends BaseTest {
 
-//	@Parameters({ "UserName", "Password", "productname" })
-	@org.testng.annotations.Test (dataProvider = "getData")
-	public void submitOrder(String Username, String Password, String product) throws Exception {
+	@org.testng.annotations.Test(dataProvider = "getData")
+	public void submitOrder(HashMap<String, String> input) throws Exception {
 		// TODO Auto-generated method stub
-		ProductCatalogs ProductCatalogs = Login.LoginApplication(Username, Password);
+		ProductCatalogs ProductCatalogs = Login.LoginApplication(input.get("email"), input.get("password"));
 		List<WebElement> products = ProductCatalogs.getProductList();
-		ProductCatalogs.addTocart(product);
+		ProductCatalogs.addTocart(input.get("product"));
 		Cart Cart = ProductCatalogs.clickOnCart();
-		Cart.verifyProductNameinCart(product);
-		Boolean match = Cart.verifyProductNameinCart(product);
+		Cart.verifyProductNameinCart(input.get("product"));
+		Boolean match = Cart.verifyProductNameinCart(input.get("product"));
 		Assert.assertTrue(match);
 		Checkout Checkout = Cart.ClickOnCheckout();
-		Checkout.EnterEmail(Username);
+		Checkout.EnterEmail(input.get("email"));
 		Checkout.ClickonDropdown();
 		Checkout.EnterCountryDropdown("Ind");
 		List<WebElement> CountryList = Checkout.getCountryList();
@@ -63,25 +64,13 @@ public class loginToCheckout extends BaseTest {
 
 	}
 
-//	@Parameters({ "UserName", "Password", "product" })
-//	@org.testng.annotations.Test(dependsOnMethods = { "submitOrder" })
-//	public void Myorder(String Username, String Password, String product) {
-//		ProductCatalogs ProductCatalogs = Login.LoginApplication(Username, Password);
-//		MyOrderPage productOrder = ProductCatalogs.ClickonmyOrder();
-//		Assert.assertTrue(productOrder.verifyOrderProduct(product));
-//	}
-
 	@DataProvider
-	public Object[][] getData() {
-		Object[][] credentails = new Object[2][3];
-		credentails[0][0] = "John@mailinator.com";
-		credentails[0][1] = "Sagar@91";
-		credentails[0][2] = "ADIDAS ORIGINAL";
+	public Object[][] getData() throws IOException {
 
-		credentails[1][0] = "dummy@mailinator.com";
-		credentails[1][1] = "Dummy@123";
-		credentails[1][2] = "ZARA COAT 3";
-		return credentails;
+		List<HashMap<String, String>> data = getdata_Reader(
+				"C:\\Eclipse New\\NewWorkSpace\\End2EndFramework\\src\\test\\java\\data_json\\purchaseorder_json_credentials");
+
+		return new Object[][] { { data.get(0) }, { data.get(1) } };
 
 	}
 }

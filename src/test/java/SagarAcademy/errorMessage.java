@@ -27,7 +27,5 @@ public class errorMessage extends BaseTest {
 		credentails[1][0] = "Sagar@mail.com";
 		credentails[1][1] = "Sagar@91";
 		return credentails;
-
 	}
-
 }

@@ -1,6 +1,7 @@
 package SagarAcademy;
 
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.hc.core5.util.Asserts;
@@ -28,22 +29,20 @@ import login.pagefactory.MyOrderPage;
 import login.pagefactory.ProductCatalogs;
 import multiUseElementAbstract.MultiUseComponent;
 
-public class loginToCheckout extends BaseTest {
-//	String productname = "ADIDAS ORIGINAL";
+public class loginToCheckout_hashmap extends BaseTest {
 
-//	@Parameters({ "UserName", "Password", "productname" })
 	@org.testng.annotations.Test (dataProvider = "getData")
-	public void submitOrder(String Username, String Password, String product) throws Exception {
+	public void submitOrder(HashMap<String, String> input) throws Exception {
 		// TODO Auto-generated method stub
-		ProductCatalogs ProductCatalogs = Login.LoginApplication(Username, Password);
+		ProductCatalogs ProductCatalogs = Login.LoginApplication(input.get("email"), input.get("password"));
 		List<WebElement> products = ProductCatalogs.getProductList();
-		ProductCatalogs.addTocart(product);
+		ProductCatalogs.addTocart(input.get("product"));
 		Cart Cart = ProductCatalogs.clickOnCart();
-		Cart.verifyProductNameinCart(product);
-		Boolean match = Cart.verifyProductNameinCart(product);
+		Cart.verifyProductNameinCart(input.get("product"));
+		Boolean match = Cart.verifyProductNameinCart(input.get("product"));
 		Assert.assertTrue(match);
 		Checkout Checkout = Cart.ClickOnCheckout();
-		Checkout.EnterEmail(Username);
+		Checkout.EnterEmail(input.get("email"));
 		Checkout.ClickonDropdown();
 		Checkout.EnterCountryDropdown("Ind");
 		List<WebElement> CountryList = Checkout.getCountryList();
@@ -73,15 +72,17 @@ public class loginToCheckout extends BaseTest {
 
 	@DataProvider
 	public Object[][] getData() {
-		Object[][] credentails = new Object[2][3];
-		credentails[0][0] = "John@mailinator.com";
-		credentails[0][1] = "Sagar@91";
-		credentails[0][2] = "ADIDAS ORIGINAL";
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("email", "John@mailinator.com");
+		map.put("password", "Sagar@91");
+		map.put("product", "ADIDAS ORIGINAL");
 
-		credentails[1][0] = "dummy@mailinator.com";
-		credentails[1][1] = "Dummy@123";
-		credentails[1][2] = "ZARA COAT 3";
-		return credentails;
+		HashMap<String, String> map1 = new HashMap<String, String>();
+		map1.put("email", "dummy@mailinator.com");
+		map1.put("password", "Dummy@123");
+		map1.put("product", "ZARA COAT 3");
+
+		return new Object[][] { { map }, { map1 } };
 
 	}
 }
